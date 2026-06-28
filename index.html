@@ -781,7 +781,7 @@ async function toggleMaterialAuto() {
   if (!mat) return;
   const idx = materials.indexOf(mat);
   const newVal = (mat.review_auto || 'ON') === 'ON' ? 'OFF' : 'ON';
-  const headers = ['id','cert_id','name','type','unit_type','unit_total','unit_current','image_url','review_auto'];
+  const headers = ['id','cert_id','name','image_url','unit_type','unit_total','unit_current','status','memo','review_auto'];
   const row = headers.map(h => h === 'review_auto' ? newVal : (mat[h]||''));
   try {
     await gasPost({ action:'updateMaterialRow', rowIndex:idx+2, row });
