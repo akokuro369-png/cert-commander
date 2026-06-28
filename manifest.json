@@ -1,0 +1,10 @@
+{
+  "name": "CertCommander",
+  "short_name": "CertCmd",
+  "description": "資格学習統合管理アプリ",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#3b82f6",
+  "icons": []
+}
