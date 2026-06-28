@@ -725,7 +725,8 @@ function renderDetailItems(matId) {
     if (!badges) badges = '<span class="review-badge">未学習</span>';
 
     let nextInfo = '';
-    const autoOn = (item.review_auto || 'ON') === 'ON';
+    const matAutoOn = (mat?.review_auto || 'ON') === 'ON';
+    const autoOn = matAutoOn && (item.review_auto || 'ON') === 'ON';
     if (last && autoOn) {
       let nextDays;
       if (last.result === '×') nextDays = 1;
