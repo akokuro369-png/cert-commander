@@ -794,6 +794,7 @@ function renderDetailItems(matId) {
     const lastMemo = last?.memo || '';
     const memoHTML = lastMemo ? `<div class="ch-memo">メモ: ${lastMemo}</div>` : '';
 
+    const escapedName = item.name.replace(/'/g, "\\'");
     let nextInfo = '';
     const autoOn = matAutoOn && (item.review_auto || 'ON') === 'ON';
     if (autoOn) {
@@ -821,7 +822,6 @@ function renderDetailItems(matId) {
       }
     }
 
-    const escapedName = item.name.replace(/'/g, "\\'");
     html += `<div class="ch-row">
       <div class="ch-top">
         <div class="ch-name">${item.name}</div>
