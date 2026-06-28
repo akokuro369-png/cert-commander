@@ -37,7 +37,6 @@ button { cursor:pointer; border:none; font:inherit; color:var(--text); }
 .card-title { font-size:14px; font-weight:600; margin-bottom:8px; }
 .card-sub { font-size:12px; color:var(--sub); }
 
-/* Countdown */
 .countdown-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .countdown-item { background:var(--card); border-radius:var(--radius); padding:14px; text-align:center; }
 .countdown-item .cert-name { font-size:12px; font-weight:600; margin-bottom:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
@@ -50,7 +49,6 @@ button { cursor:pointer; border:none; font:inherit; color:var(--text); }
 .today-stat .val { font-size:24px; font-weight:700; }
 .today-stat .label { font-size:11px; color:var(--sub); }
 
-/* Review */
 .review-list { max-height:200px; overflow-y:auto; }
 .review-item { display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid #ffffff08; }
 .review-item .dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
@@ -62,7 +60,6 @@ button { cursor:pointer; border:none; font:inherit; color:var(--text); }
 .urgency-today { background:#f59e0b30; color:var(--warn); }
 .urgency-soon { background:#3b82f630; color:var(--accent); }
 
-/* Timer */
 .timer-display { text-align:center; padding:20px 0; }
 .timer-display .time { font-size:56px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:2px; }
 .timer-controls { display:flex; gap:12px; justify-content:center; margin:16px 0; }
@@ -85,7 +82,6 @@ button { cursor:pointer; border:none; font:inherit; color:var(--text); }
 .input-mode-toggle button { flex:1; padding:10px; background:none; font-size:13px; color:var(--sub); }
 .input-mode-toggle button.active { background:var(--accent); color:#fff; }
 
-/* Materials */
 .material-card { display:flex; gap:12px; align-items:center; }
 .material-card .cover { width:50px; height:65px; border-radius:6px; background:var(--card); display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; overflow:hidden; }
 .material-card .cover img { width:100%; height:100%; object-fit:cover; }
@@ -95,12 +91,13 @@ button { cursor:pointer; border:none; font:inherit; color:var(--text); }
 .progress-bar { height:6px; background:var(--card); border-radius:3px; margin-top:6px; overflow:hidden; }
 .progress-bar .fill { height:100%; border-radius:3px; transition:width .3s; }
 .progress-text { font-size:11px; color:var(--sub); margin-top:3px; }
+.round-summary { display:flex; gap:6px; margin-top:4px; flex-wrap:wrap; }
+.round-summary span { font-size:9px; padding:2px 7px; border-radius:4px; background:var(--card); color:var(--sub); }
 
 .cert-filter { display:flex; gap:8px; overflow-x:auto; padding-bottom:8px; margin-bottom:12px; -webkit-overflow-scrolling:touch; }
 .cert-filter button { white-space:nowrap; padding:6px 14px; border-radius:99px; font-size:12px; background:var(--card); color:var(--sub); flex-shrink:0; }
 .cert-filter button.active { background:var(--accent); color:#fff; }
 
-/* Stats */
 .stat-card { text-align:center; }
 .stat-card .big { font-size:36px; font-weight:800; }
 .bar-chart { display:flex; align-items:flex-end; gap:4px; height:150px; padding-top:10px; }
@@ -112,7 +109,6 @@ button { cursor:pointer; border:none; font:inherit; color:var(--text); }
 .goal-bar { height:10px; background:var(--card); border-radius:5px; overflow:hidden; }
 .goal-bar .fill { height:100%; background:linear-gradient(90deg,var(--accent),var(--accent3)); border-radius:5px; transition:width .3s; }
 
-/* Loading / Toast */
 .loading { display:flex; align-items:center; justify-content:center; height:200px; }
 .spinner { width:36px; height:36px; border:3px solid var(--card); border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite; }
 @keyframes spin { to { transform:rotate(360deg); } }
@@ -132,26 +128,33 @@ button { cursor:pointer; border:none; font:inherit; color:var(--text); }
 .detail-header .auto-toggle { font-size:11px; padding:4px 10px; border-radius:99px; }
 .auto-on { background:#10b98130; color:var(--accent3); }
 .auto-off { background:var(--card); color:var(--sub); }
+.detail-summary { padding:8px 16px; font-size:12px; color:var(--sub); background:var(--surface); border-top:1px solid #ffffff08; }
 .detail-content { flex:1; overflow-y:auto; padding:12px 16px 20px; -webkit-overflow-scrolling:touch; min-height:0; }
-.item-group-title { font-size:12px; color:var(--accent); font-weight:600; margin:16px 0 6px; padding-left:4px; }
+.item-group-title { font-size:12px; color:var(--accent); font-weight:600; margin:12px 0 4px; padding-left:2px; }
 .item-group-title:first-child { margin-top:0; }
-.item-row { background:var(--surface); border-radius:10px; padding:12px; margin-bottom:8px; }
-.item-row .item-top { display:flex; align-items:center; justify-content:space-between; }
-.item-row .item-name { font-size:14px; font-weight:500; }
-.item-row .item-count { font-size:12px; color:var(--sub); }
-.item-row .item-reviews { display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
-.review-badge { font-size:10px; padding:3px 8px; border-radius:6px; background:var(--card); color:var(--sub); }
-.review-badge.done { background:#10b98125; color:var(--accent3); }
-.review-badge.fail { background:#ef444425; color:var(--danger); }
-.review-badge.warn { background:#f59e0b25; color:var(--warn); }
-.item-row .item-next { font-size:11px; color:var(--sub); margin-top:6px; }
-.item-row .item-next.overdue { color:var(--danger); }
-.item-row .item-next.today { color:var(--warn); }
-.item-actions { display:flex; gap:8px; margin-top:10px; }
-.item-actions button { flex:1; padding:8px; border-radius:8px; font-size:13px; font-weight:600; }
-.btn-ok { background:#10b98130; color:var(--accent3); }
-.btn-tri { background:#f59e0b30; color:var(--warn); }
-.btn-ng { background:#ef444430; color:var(--danger); }
+.ch-row { background:var(--surface); border-radius:8px; padding:10px 12px; margin-bottom:6px; }
+.ch-top { display:flex; align-items:center; justify-content:space-between; }
+.ch-name { font-size:13px; font-weight:500; }
+.ch-round { font-size:11px; color:var(--sub); }
+.ch-badges { display:flex; gap:4px; margin-top:5px; flex-wrap:wrap; }
+.badge { font-size:9px; padding:2px 7px; border-radius:4px; }
+.b-done { background:#10b98120; color:var(--accent3); }
+.b-prog { background:#f59e0b20; color:var(--warn); }
+.b-none { background:var(--card); color:#64748b; }
+.ch-memo { font-size:10px; color:var(--sub); margin-top:4px; font-style:italic; }
+.ch-next { font-size:10px; color:var(--sub); margin-top:3px; }
+.ch-next.overdue { color:var(--danger); }
+.ch-next.today { color:var(--warn); }
+.ch-btns { display:flex; gap:6px; margin-top:8px; }
+.ch-btns button { flex:1; padding:7px; border-radius:6px; font-size:12px; font-weight:600; }
+.btn-done { background:#10b98125; color:var(--accent3); }
+.btn-mid { background:#f59e0b25; color:var(--warn); }
+
+/* Memo Modal */
+.memo-overlay { position:fixed; inset:0; background:#00000080; z-index:60; display:none; align-items:center; justify-content:center; padding:20px; }
+.memo-overlay.active { display:flex; }
+.memo-box { background:var(--surface); border-radius:var(--radius); padding:20px; width:100%; max-width:400px; }
+.memo-box h3 { font-size:15px; margin-bottom:12px; }
 
 /* Settings Modal */
 .modal-overlay { position:fixed; inset:0; background:#00000080; z-index:100; display:none; align-items:flex-end; justify-content:center; }
@@ -160,7 +163,6 @@ button { cursor:pointer; border:none; font:inherit; color:var(--text); }
 .modal h3 { font-size:16px; margin-bottom:16px; }
 .modal .close-btn { position:absolute; top:12px; right:16px; background:none; font-size:20px; color:var(--sub); }
 
-/* Setup screen */
 .setup-screen { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100dvh; gap:20px; padding:20px; }
 .setup-screen h1 { font-size:28px; font-weight:800; background:linear-gradient(135deg,var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 .setup-screen p { color:var(--sub); text-align:center; font-size:14px; max-width:320px; }
@@ -220,11 +222,15 @@ button { cursor:pointer; border:none; font:inherit; color:var(--text); }
         <div id="timerSection">
           <div class="form-group">
             <label>資格</label>
-            <select id="recCert" onchange="loadMaterialOpts('recCert','recMat')"></select>
+            <select id="recCert" onchange="loadMaterialOpts('recCert','recMat');loadChapterOpts('recMat','recChapter')"></select>
           </div>
           <div class="form-group">
             <label>教材</label>
-            <select id="recMat"></select>
+            <select id="recMat" onchange="loadChapterOpts('recMat','recChapter')"></select>
+          </div>
+          <div class="form-group">
+            <label>章（任意）</label>
+            <select id="recChapter"></select>
           </div>
           <div class="timer-display">
             <div class="time" id="timerDisplay">00:00:00</div>
@@ -239,29 +245,28 @@ button { cursor:pointer; border:none; font:inherit; color:var(--text); }
         <div id="manualSection" class="record-form">
           <div class="form-group">
             <label>資格</label>
-            <select id="manCert" onchange="loadMaterialOpts('manCert','manMat')"></select>
+            <select id="manCert" onchange="loadMaterialOpts('manCert','manMat');loadChapterOpts('manMat','manChapter')"></select>
           </div>
           <div class="form-group">
             <label>教材</label>
-            <select id="manMat"></select>
+            <select id="manMat" onchange="loadChapterOpts('manMat','manChapter')"></select>
+          </div>
+          <div class="form-group">
+            <label>章（任意）</label>
+            <select id="manChapter"></select>
           </div>
           <div class="form-group">
             <label>学習時間（分）</label>
             <input type="number" id="manMinutes" min="1" placeholder="30">
           </div>
           <div class="form-group">
-            <label>進めた量</label>
-            <input type="number" id="manUnit" min="0" placeholder="10">
-          </div>
-          <div class="form-group">
-            <label>スコア（任意）</label>
-            <input type="text" id="manScore" placeholder="8/10">
-          </div>
-          <div class="form-group">
             <label>メモ</label>
-            <textarea id="manMemo" placeholder="今日の振り返り..."></textarea>
+            <textarea id="manMemo" placeholder="P.45まで、問題12まで..."></textarea>
           </div>
-          <button class="btn-submit" onclick="submitManual()">記録する</button>
+          <div style="display:flex;gap:8px;margin-bottom:14px">
+            <button class="btn-done" style="flex:1;padding:12px;border-radius:8px;font-size:14px" onclick="submitManual('○')">○ 完了</button>
+            <button class="btn-mid" style="flex:1;padding:12px;border-radius:8px;font-size:14px" onclick="submitManual('△')">△ 途中</button>
+          </div>
         </div>
       </div>
 
@@ -269,18 +274,13 @@ button { cursor:pointer; border:none; font:inherit; color:var(--text); }
         <div class="card">
           <div class="card-title">タイマー記録を保存</div>
           <div class="form-group">
-            <label>進めた量</label>
-            <input type="number" id="stopUnit" min="0" placeholder="10">
-          </div>
-          <div class="form-group">
-            <label>スコア（任意）</label>
-            <input type="text" id="stopScore" placeholder="8/10">
-          </div>
-          <div class="form-group">
             <label>メモ</label>
-            <textarea id="stopMemo" placeholder="今日の振り返り..."></textarea>
+            <textarea id="stopMemo" placeholder="P.45まで、問題12まで..."></textarea>
           </div>
-          <button class="btn-submit" onclick="submitTimer()">保存する</button>
+          <div style="display:flex;gap:8px">
+            <button class="btn-done" style="flex:1;padding:12px;border-radius:8px;font-size:14px" onclick="submitTimer('○')">○ 完了</button>
+            <button class="btn-mid" style="flex:1;padding:12px;border-radius:8px;font-size:14px" onclick="submitTimer('△')">△ 途中</button>
+          </div>
         </div>
       </div>
     </div>
@@ -332,7 +332,19 @@ button { cursor:pointer; border:none; font:inherit; color:var(--text); }
     <div class="title" id="detailTitle"></div>
     <button id="detailAutoBtn" class="auto-toggle auto-on" onclick="toggleMaterialAuto()">自動復習 ON</button>
   </div>
+  <div class="detail-summary" id="detailSummary"></div>
   <div class="detail-content" id="detailContent"></div>
+</div>
+
+<!-- Memo Modal -->
+<div id="memoModal" class="memo-overlay" onclick="if(event.target===this)closeMemo()">
+  <div class="memo-box">
+    <h3 id="memoTitle">メモ</h3>
+    <div class="form-group">
+      <textarea id="memoInput" placeholder="P.45まで、問題12まで..."></textarea>
+    </div>
+    <button class="btn-submit" onclick="submitMemo()">保存</button>
+  </div>
 </div>
 
 <!-- Settings Modal -->
@@ -411,6 +423,56 @@ function renderAll() {
   renderStats();
 }
 
+// ━━━ Chapter status helper ━━━
+function getChapterStatus(matId) {
+  const items = materialItems.filter(it => it.material_id === matId);
+  const total = items.length;
+  let doneCount = 0;
+  const rounds = {};
+
+  items.forEach(item => {
+    const logs = reviewLogs.filter(r => r.material_id === matId && r.item_name === item.name);
+    const completedRounds = logs.filter(l => l.result === '○').length;
+    const last = logs.sort((a,b) => a.ts > b.ts ? 1 : -1)[logs.length - 1];
+    const inProgress = last && last.result === '△';
+    const currentRound = inProgress ? completedRounds + 1 : completedRounds;
+
+    if (completedRounds > 0) doneCount++;
+
+    for (let r = 1; r <= completedRounds; r++) {
+      rounds[r] = (rounds[r]||0) + 1;
+    }
+    if (inProgress) {
+      const rn = completedRounds + 1;
+      if (!rounds[`${rn}p`]) rounds[`${rn}p`] = 0;
+      rounds[`${rn}p`]++;
+    }
+  });
+
+  return { total, doneCount, rounds };
+}
+
+function getRoundSummaryHTML(matId) {
+  const { total, doneCount, rounds } = getChapterStatus(matId);
+  if (!total) return '';
+  const parts = [];
+  const maxRound = Math.max(...Object.keys(rounds).map(k => parseInt(k)||0), 0);
+  for (let r = 1; r <= maxRound; r++) {
+    const done = rounds[r]||0;
+    const prog = rounds[`${r}p`]||0;
+    let label = `${r}周目:${done}完了`;
+    if (prog > 0) label += `/${prog}学習中`;
+    parts.push(`<span>${label}</span>`);
+  }
+  const progOnly = Object.keys(rounds).filter(k => k.endsWith('p') && !rounds[parseInt(k)]);
+  progOnly.forEach(k => {
+    const r = parseInt(k);
+    parts.push(`<span>${r}周目:${rounds[k]}学習中</span>`);
+  });
+  if (!parts.length && total > 0) parts.push(`<span>未着手</span>`);
+  return parts.join('');
+}
+
 // ━━━ Dashboard ━━━
 function renderDashboard() {
   const today = new Date(); today.setHours(0,0,0,0);
@@ -424,7 +486,6 @@ function renderDashboard() {
   const streak = lastDS ? +lastDS.streak || 0 : 0;
   document.getElementById('streakBadge').textContent = streak > 0 ? `🔥 ${streak}日連続` : '';
 
-  // Countdown
   const upcoming = certs.filter(c => c.exam_date).map(c => {
     const d = new Date(c.exam_date); d.setHours(0,0,0,0);
     return { ...c, daysLeft: Math.ceil((d - today) / 86400000) };
@@ -450,23 +511,26 @@ function renderDashboard() {
 
 function renderReviewList() {
   const today = new Date(); today.setHours(0,0,0,0);
+  const mat = materials.find(m => (m.review_auto||'ON') === 'ON');
+
   const grouped = {};
   reviewLogs.forEach(r => {
+    if (r.result !== '○') return;
     const key = `${r.cert_id}|${r.material_id}|${r.item_name}`;
     if (!grouped[key] || r.ts > grouped[key].ts) grouped[key] = r;
   });
 
   const items = [];
   Object.values(grouped).forEach(r => {
-    let nextDays;
-    if (r.result === '×') nextDays = 1;
-    else if (r.result === '△') nextDays = 3;
-    else { const n = +r.review_num||0; nextDays = n<=1?7:n===2?14:30; }
+    const m = materials.find(mt => mt.id === r.material_id);
+    if ((m?.review_auto||'ON') !== 'ON') return;
+    const n = +r.review_num||1;
+    const nextDays = n<=1?7:n===2?14:30;
     const rd = new Date(r.ts); rd.setDate(rd.getDate() + nextDays); rd.setHours(0,0,0,0);
     const diff = Math.ceil((rd - today) / 86400000);
     if (diff <= 3) {
       const cert = certs.find(c => c.id === r.cert_id);
-      items.push({ ...r, diff, certName:cert?.name||'', certColor:cert?.color||'#666' });
+      items.push({ ...r, diff, certName:cert?.name||'', certColor:cert?.color||'#666', round:n });
     }
   });
   items.sort((a,b) => a.diff - b.diff);
@@ -478,7 +542,7 @@ function renderReviewList() {
     const lab = i.diff<0?`${-i.diff}日超過`:i.diff===0?'今日':`${i.diff}日後`;
     return `<div class="review-item">
       <div class="dot" style="background:${i.certColor}"></div>
-      <div class="info"><div class="name">${i.item_name}</div><div class="meta">${i.certName} / ${i.result} → ${(+i.review_num||0)+1}回目</div></div>
+      <div class="info"><div class="name">${i.item_name}</div><div class="meta">${i.certName} / ${i.round}周目完了 → 復習</div></div>
       <span class="urgency urgency-${urg}">${lab}</span>
     </div>`;
   }).join('');
@@ -496,6 +560,12 @@ function loadMaterialOpts(certSel, matSel) {
   document.getElementById(matSel).innerHTML = '<option value="">選択…</option>' + mats.map(m => `<option value="${m.id}">${m.name}</option>`).join('');
 }
 
+function loadChapterOpts(matSel, chSel) {
+  const mid = document.getElementById(matSel).value;
+  const items = materialItems.filter(it => it.material_id === mid).sort((a,b) => (+a.order)-(+b.order));
+  document.getElementById(chSel).innerHTML = '<option value="">選択しない</option>' + items.map(it => `<option value="${it.name}">${it.category?it.category+' - ':''}${it.name}</option>`).join('');
+}
+
 function setInputMode(btn, mode) {
   btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -504,7 +574,6 @@ function setInputMode(btn, mode) {
   document.getElementById('stopForm').classList.remove('active');
 }
 
-// Timer
 let timerInterval=null, timerSeconds=0, timerRunning=false, timerStartISO=null;
 
 function timerStart() {
@@ -544,47 +613,53 @@ function timerReset() {
   document.getElementById('stopForm').classList.remove('active');
 }
 
-async function submitTimer() {
+async function submitTimer(result) {
   const minutes = Math.round(timerSeconds / 60);
   const certId = document.getElementById('recCert').value;
   const matId = document.getElementById('recMat').value;
+  const chapter = document.getElementById('recChapter').value;
+  const memo = document.getElementById('stopMemo').value||'';
   const row = [
     new Date().toISOString(), certId, matId, minutes,
-    document.getElementById('stopUnit').value||'', timerStartISO, new Date().toISOString(),
-    'stopwatch', document.getElementById('stopScore').value||'', document.getElementById('stopMemo').value||'', ''
+    chapter, timerStartISO, new Date().toISOString(),
+    'stopwatch', result, memo, ''
   ];
   await gasPost({ action:'appendStudyLog', row });
-  const unitDone = +document.getElementById('stopUnit').value || 0;
-  if (matId && unitDone) await updateMatProgress(matId, unitDone);
+  if (chapter && matId) {
+    await recordChapterStatus(matId, certId, chapter, result, memo);
+  }
   timerReset();
-  ['stopUnit','stopScore','stopMemo'].forEach(id => document.getElementById(id).value='');
+  document.getElementById('stopMemo').value='';
   showToast(`${minutes}分の学習を記録しました！`);
   await loadAllData();
 }
 
-async function submitManual() {
+async function submitManual(result) {
   const certId = document.getElementById('manCert').value;
   const matId = document.getElementById('manMat').value;
+  const chapter = document.getElementById('manChapter').value;
   const minutes = +document.getElementById('manMinutes').value;
+  const memo = document.getElementById('manMemo').value||'';
   if (!certId || !minutes) { showToast('資格と学習時間は必須です'); return; }
   const row = [
     new Date().toISOString(), certId, matId, minutes,
-    document.getElementById('manUnit').value||'', '', '', 'manual',
-    document.getElementById('manScore').value||'', document.getElementById('manMemo').value||'', ''
+    chapter, '', '', 'manual', result, memo, ''
   ];
   await gasPost({ action:'appendStudyLog', row });
-  const unitDone = +document.getElementById('manUnit').value || 0;
-  if (matId && unitDone) await updateMatProgress(matId, unitDone);
-  ['manMinutes','manUnit','manScore','manMemo'].forEach(id => document.getElementById(id).value='');
+  if (chapter && matId) {
+    await recordChapterStatus(matId, certId, chapter, result, memo);
+  }
+  ['manMinutes','manMemo'].forEach(id => document.getElementById(id).value='');
   showToast(`${minutes}分の学習を記録しました！`);
   await loadAllData();
 }
 
-async function updateMatProgress(matId, unitDone) {
-  const idx = materials.findIndex(m => m.id === matId);
-  if (idx < 0) return;
-  const newVal = (+materials[idx].unit_current||0) + unitDone;
-  await gasPost({ action:'updateMaterialProgress', rowIndex: idx+2, value: newVal });
+async function recordChapterStatus(matId, certId, itemName, result, memo) {
+  const logs = reviewLogs.filter(r => r.material_id === matId && r.item_name === itemName);
+  const completedRounds = logs.filter(l => l.result === '○').length;
+  const roundNum = result === '○' ? completedRounds + 1 : completedRounds + 1;
+  const row = [new Date().toISOString(), certId, matId, itemName, result, roundNum, memo];
+  await gasPost({ action:'appendReviewLog', row });
 }
 
 // ━━━ Materials ━━━
@@ -601,22 +676,198 @@ function renderMaterials() {
 
   el.innerHTML = filtered.map(m => {
     const cert = certs.find(c => c.id === m.cert_id);
-    const pct = (+m.unit_total)>0 ? Math.round((+m.unit_current)/(+m.unit_total)*100) : 0;
     const cover = m.image_url ? `<img src="${m.image_url}">` : '📖';
-    const itemCount = materialItems.filter(it => it.material_id === m.id).length;
-    const itemLabel = itemCount ? ` / ${itemCount}章` : '';
+    const { total, doneCount } = getChapterStatus(m.id);
+    const pct = total > 0 ? Math.round(doneCount / total * 100) : 0;
+    const roundHTML = getRoundSummaryHTML(m.id);
+    const progressLabel = total > 0 ? `${doneCount}/${total}章 完了（${pct}%）` : `${m.unit_current||0}/${m.unit_total||0} ${m.unit_type||''}`;
+
     return `<div class="card material-card" onclick="openDetail('${m.id}')" style="cursor:pointer">
       <div class="cover">${cover}</div>
       <div class="detail">
         <div class="mat-name">${m.name}</div>
         <div class="mat-cert" style="color:${cert?.color||'#666'}">${cert?.name||''}</div>
         <div class="progress-bar"><div class="fill" style="width:${pct}%;background:${cert?.color||'var(--accent)'}"></div></div>
-        <div class="progress-text">${m.unit_current}/${m.unit_total} ${m.unit_type}（${pct}%）${itemLabel}</div>
+        <div class="progress-text">${progressLabel}</div>
+        ${roundHTML ? `<div class="round-summary">${roundHTML}</div>` : ''}
       </div>
     </div>`;
   }).join('');
 }
 function setMatFilter(id) { matFilter=id; renderMaterials(); }
+
+// ━━━ Material Detail ━━━
+let currentDetailMatId = null;
+
+function openDetail(matId) {
+  currentDetailMatId = matId;
+  const mat = materials.find(m => m.id === matId);
+  if (!mat) return;
+  document.getElementById('detailTitle').textContent = mat.name;
+  const isAuto = (mat.review_auto || 'ON') === 'ON';
+  const btn = document.getElementById('detailAutoBtn');
+  btn.textContent = `自動復習 ${isAuto?'ON':'OFF'}`;
+  btn.className = `auto-toggle ${isAuto?'auto-on':'auto-off'}`;
+
+  const { total, doneCount } = getChapterStatus(matId);
+  const roundHTML = getRoundSummaryHTML(matId);
+  document.getElementById('detailSummary').innerHTML = `${doneCount}/${total}章 完了 — ${roundHTML || '未着手'}`;
+
+  renderDetailItems(matId);
+  document.getElementById('detailOverlay').classList.add('active');
+}
+
+function closeDetail() {
+  document.getElementById('detailOverlay').classList.remove('active');
+  currentDetailMatId = null;
+}
+
+function renderDetailItems(matId) {
+  const items = materialItems.filter(it => it.material_id === matId).sort((a,b) => (+a.order) - (+b.order));
+  const today = new Date(); today.setHours(0,0,0,0);
+  const mat = materials.find(m => m.id === matId);
+  const certId = mat?.cert_id || '';
+  const matAutoOn = (mat?.review_auto || 'ON') === 'ON';
+
+  let html = '';
+  let lastCat = '';
+  items.forEach(item => {
+    if (item.category && item.category !== lastCat) {
+      lastCat = item.category;
+      html += `<div class="item-group-title">${item.category}</div>`;
+    }
+
+    const logs = reviewLogs.filter(r => r.material_id === matId && r.item_name === item.name).sort((a,b) => a.ts > b.ts ? 1 : -1);
+    const completedRounds = logs.filter(l => l.result === '○').length;
+    const last = logs[logs.length - 1];
+    const inProgress = last && last.result === '△';
+    const currentRound = completedRounds + (inProgress ? 1 : 0);
+    const roundLabel = currentRound > 0 ? `${currentRound}周目` : '—';
+
+    let badges = '';
+    let shownRound = 0;
+    logs.forEach(l => {
+      if (l.result === '○') {
+        shownRound++;
+        const d = new Date(l.ts);
+        badges += `<span class="badge b-done">${shownRound}_${d.getMonth()+1}/${d.getDate()}完</span>`;
+      }
+    });
+    if (inProgress) {
+      badges += `<span class="badge b-prog">${completedRounds+1}_学習中</span>`;
+    }
+    if (!badges) badges = '<span class="badge b-none">未学習</span>';
+
+    const lastMemo = last?.memo || '';
+    const memoHTML = lastMemo ? `<div class="ch-memo">メモ: ${lastMemo}</div>` : '';
+
+    let nextInfo = '';
+    const autoOn = matAutoOn && (item.review_auto || 'ON') === 'ON';
+    if (completedRounds > 0 && autoOn) {
+      const lastDone = logs.filter(l => l.result === '○').pop();
+      if (lastDone) {
+        const n = completedRounds;
+        const nextDays = n<=1?7:n===2?14:30;
+        const nd = new Date(lastDone.ts); nd.setDate(nd.getDate() + nextDays); nd.setHours(0,0,0,0);
+        const diff = Math.ceil((nd - today) / 86400000);
+        const cls = diff < 0 ? 'overdue' : diff === 0 ? 'today' : '';
+        const label = diff < 0 ? `${-diff}日超過！` : diff === 0 ? '今日が復習日' : `${diff}日後（${nd.getMonth()+1}/${nd.getDate()}）`;
+        nextInfo = `<div class="ch-next ${cls}">次回: ${label}</div>`;
+      }
+    }
+
+    const escapedName = item.name.replace(/'/g, "\\'");
+    html += `<div class="ch-row">
+      <div class="ch-top">
+        <div class="ch-name">${item.name}</div>
+        <div class="ch-round">${roundLabel}</div>
+      </div>
+      <div class="ch-badges">${badges}</div>
+      ${memoHTML}
+      ${nextInfo}
+      <div class="ch-btns">
+        <button class="btn-done" onclick="chapterAction('${matId}','${certId}','${escapedName}','○')">○ 完了</button>
+        <button class="btn-mid" onclick="chapterAction('${matId}','${certId}','${escapedName}','△')">△ 途中</button>
+      </div>
+    </div>`;
+  });
+
+  if (!items.length) {
+    html = '<div class="card"><div class="card-sub" style="text-align:center;padding:20px">章データがありません<br><span style="font-size:10px">Google Sheets の material_items に追加してください</span></div></div>';
+  }
+
+  document.getElementById('detailContent').innerHTML = html;
+}
+
+// ━━━ Chapter actions ━━━
+let pendingAction = null;
+
+function chapterAction(matId, certId, itemName, result) {
+  if (result === '△') {
+    pendingAction = { matId, certId, itemName, result };
+    document.getElementById('memoTitle').textContent = `${itemName} — 途中メモ`;
+    const logs = reviewLogs.filter(r => r.material_id === matId && r.item_name === itemName);
+    const lastMemo = logs.length ? logs[logs.length-1].memo || '' : '';
+    document.getElementById('memoInput').value = lastMemo;
+    document.getElementById('memoModal').classList.add('active');
+  } else {
+    doChapterRecord(matId, certId, itemName, result, '');
+  }
+}
+
+function closeMemo() {
+  document.getElementById('memoModal').classList.remove('active');
+  pendingAction = null;
+}
+
+async function submitMemo() {
+  if (!pendingAction) return;
+  const memo = document.getElementById('memoInput').value || '';
+  const { matId, certId, itemName, result } = pendingAction;
+  closeMemo();
+  await doChapterRecord(matId, certId, itemName, result, memo);
+}
+
+async function doChapterRecord(matId, certId, itemName, result, memo) {
+  const logs = reviewLogs.filter(r => r.material_id === matId && r.item_name === itemName);
+  const completedRounds = logs.filter(l => l.result === '○').length;
+  const roundNum = result === '○' ? completedRounds + 1 : completedRounds + 1;
+  const row = [new Date().toISOString(), certId, matId, itemName, result, roundNum, memo];
+  try {
+    await gasPost({ action:'appendReviewLog', row });
+    const label = result === '○' ? `${itemName}: ${roundNum}周目完了！` : `${itemName}: 途中保存`;
+    showToast(label);
+    await loadAllData();
+    if (currentDetailMatId) {
+      const { total, doneCount } = getChapterStatus(currentDetailMatId);
+      const roundHTML = getRoundSummaryHTML(currentDetailMatId);
+      document.getElementById('detailSummary').innerHTML = `${doneCount}/${total}章 完了 — ${roundHTML || '未着手'}`;
+      renderDetailItems(currentDetailMatId);
+    }
+  } catch(e) {
+    showToast('記録エラー');
+  }
+}
+
+async function toggleMaterialAuto() {
+  const mat = materials.find(m => m.id === currentDetailMatId);
+  if (!mat) return;
+  const idx = materials.indexOf(mat);
+  const newVal = (mat.review_auto || 'ON') === 'ON' ? 'OFF' : 'ON';
+  const headers = ['id','cert_id','name','image_url','unit_type','unit_total','unit_current','status','memo','review_auto'];
+  const row = headers.map(h => h === 'review_auto' ? newVal : (mat[h]||''));
+  try {
+    await gasPost({ action:'updateMaterialRow', rowIndex:idx+2, row });
+    mat.review_auto = newVal;
+    const btn = document.getElementById('detailAutoBtn');
+    btn.textContent = `自動復習 ${newVal}`;
+    btn.className = `auto-toggle ${newVal==='ON'?'auto-on':'auto-off'}`;
+    renderDetailItems(currentDetailMatId);
+    showToast(`自動復習を${newVal}にしました`);
+  } catch(e) {
+    showToast('更新エラー');
+  }
+}
 
 // ━━━ Stats ━━━
 function renderStats() {
@@ -633,7 +884,6 @@ function renderStats() {
   document.getElementById('weekGoalText').textContent = `${goalPct}%（${weekMin}/${weekGoal}分）`;
   document.getElementById('weekGoalBar').style.width = `${goalPct}%`;
 
-  // Bar chart
   const days = [];
   for (let i=6; i>=0; i--) {
     const d = new Date(today); d.setDate(today.getDate()-i);
@@ -647,7 +897,6 @@ function renderStats() {
     return `<div class="bar-wrapper"><div class="bar-val">${d.min||''}</div><div class="bar" style="height:${h}px;background:var(--accent)"></div><div class="bar-label">${d.label}</div></div>`;
   }).join('');
 
-  // Pie
   const certMin = {};
   weekLogs.forEach(l => { certMin[l.cert_id] = (certMin[l.cert_id]||0)+(+l.minutes||0); });
   drawPie(certMin);
@@ -675,125 +924,6 @@ function drawPie(certMin) {
     angle += slice;
   });
   document.getElementById('pieLegend').innerHTML = legend.join('');
-}
-
-// ━━━ Material Detail ━━━
-let currentDetailMatId = null;
-
-function openDetail(matId) {
-  currentDetailMatId = matId;
-  const mat = materials.find(m => m.id === matId);
-  if (!mat) return;
-  document.getElementById('detailTitle').textContent = mat.name;
-  const isAuto = (mat.review_auto || 'ON') === 'ON';
-  const btn = document.getElementById('detailAutoBtn');
-  btn.textContent = `自動復習 ${isAuto?'ON':'OFF'}`;
-  btn.className = `auto-toggle ${isAuto?'auto-on':'auto-off'}`;
-  renderDetailItems(matId);
-  document.getElementById('detailOverlay').classList.add('active');
-}
-
-function closeDetail() {
-  document.getElementById('detailOverlay').classList.remove('active');
-  currentDetailMatId = null;
-}
-
-function renderDetailItems(matId) {
-  const items = materialItems.filter(it => it.material_id === matId).sort((a,b) => (+a.order) - (+b.order));
-  const today = new Date(); today.setHours(0,0,0,0);
-  const mat = materials.find(m => m.id === matId);
-  const certId = mat?.cert_id || '';
-
-  let html = '';
-  let lastCat = '';
-  items.forEach(item => {
-    if (item.category && item.category !== lastCat) {
-      lastCat = item.category;
-      html += `<div class="item-group-title">${item.category}</div>`;
-    }
-
-    const logs = reviewLogs.filter(r => r.material_id === matId && r.item_name === item.name).sort((a,b) => a.ts > b.ts ? 1 : -1);
-    const count = logs.length;
-    const last = logs[logs.length - 1];
-
-    let badges = '';
-    logs.forEach(l => {
-      const cls = l.result === '○' ? 'done' : l.result === '×' ? 'fail' : 'warn';
-      const d = new Date(l.ts);
-      badges += `<span class="review-badge ${cls}">${l.result} ${d.getMonth()+1}/${d.getDate()}</span>`;
-    });
-    if (!badges) badges = '<span class="review-badge">未学習</span>';
-
-    let nextInfo = '';
-    const matAutoOn = (mat?.review_auto || 'ON') === 'ON';
-    const autoOn = matAutoOn && (item.review_auto || 'ON') === 'ON';
-    if (last && autoOn) {
-      let nextDays;
-      if (last.result === '×') nextDays = 1;
-      else if (last.result === '△') nextDays = 3;
-      else { const n = +last.review_num||0; nextDays = n<=1?7:n===2?14:30; }
-      const nd = new Date(last.ts); nd.setDate(nd.getDate() + nextDays); nd.setHours(0,0,0,0);
-      const diff = Math.ceil((nd - today) / 86400000);
-      const cls = diff < 0 ? 'overdue' : diff === 0 ? 'today' : '';
-      const label = diff < 0 ? `${-diff}日超過！` : diff === 0 ? '今日が復習日' : `${diff}日後（${nd.getMonth()+1}/${nd.getDate()}）`;
-      nextInfo = `<div class="item-next ${cls}">次回: ${label}</div>`;
-    } else if (!autoOn) {
-      nextInfo = `<div class="item-next">自動復習: OFF</div>`;
-    }
-
-    const escapedName = item.name.replace(/'/g, "\\'");
-    html += `<div class="item-row">
-      <div class="item-top">
-        <div class="item-name">${item.name}</div>
-        <div class="item-count">${count}回</div>
-      </div>
-      <div class="item-reviews">${badges}</div>
-      ${nextInfo}
-      <div class="item-actions">
-        <button class="btn-ok" onclick="recordItemReview('${matId}','${certId}','${escapedName}','○',${count+1})">○</button>
-        <button class="btn-tri" onclick="recordItemReview('${matId}','${certId}','${escapedName}','△',${count+1})">△</button>
-        <button class="btn-ng" onclick="recordItemReview('${matId}','${certId}','${escapedName}','×',${count+1})">×</button>
-      </div>
-    </div>`;
-  });
-
-  if (!items.length) {
-    html = '<div class="card"><div class="card-sub" style="text-align:center;padding:20px">章データがありません<br><span style="font-size:10px">Google Sheets の material_items に追加してください</span></div></div>';
-  }
-
-  document.getElementById('detailContent').innerHTML = html;
-}
-
-async function recordItemReview(matId, certId, itemName, result, reviewNum) {
-  const row = [new Date().toISOString(), certId, matId, itemName, result, reviewNum, ''];
-  try {
-    await gasPost({ action:'appendReviewLog', row });
-    showToast(`${itemName}: ${result}を記録`);
-    await loadAllData();
-    if (currentDetailMatId) renderDetailItems(currentDetailMatId);
-  } catch(e) {
-    showToast('記録エラー');
-  }
-}
-
-async function toggleMaterialAuto() {
-  const mat = materials.find(m => m.id === currentDetailMatId);
-  if (!mat) return;
-  const idx = materials.indexOf(mat);
-  const newVal = (mat.review_auto || 'ON') === 'ON' ? 'OFF' : 'ON';
-  const headers = ['id','cert_id','name','image_url','unit_type','unit_total','unit_current','status','memo','review_auto'];
-  const row = headers.map(h => h === 'review_auto' ? newVal : (mat[h]||''));
-  try {
-    await gasPost({ action:'updateMaterialRow', rowIndex:idx+2, row });
-    mat.review_auto = newVal;
-    const btn = document.getElementById('detailAutoBtn');
-    btn.textContent = `自動復習 ${newVal}`;
-    btn.className = `auto-toggle ${newVal==='ON'?'auto-on':'auto-off'}`;
-    renderDetailItems(currentDetailMatId);
-    showToast(`自動復習を${newVal}にしました`);
-  } catch(e) {
-    showToast('更新エラー');
-  }
 }
 
 // ━━━ Tab switch ━━━
