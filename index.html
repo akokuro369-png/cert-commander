@@ -150,6 +150,8 @@ button { cursor:pointer; border:none; font:inherit; color:var(--text); }
 .btn-done { background:#10b98125; color:var(--accent3); }
 .btn-mid { background:#f59e0b25; color:var(--warn); }
 .btn-go { background:#3b82f625; color:var(--accent); }
+.ch-next-row { display:flex; align-items:center; gap:6px; margin-top:3px; }
+.ch-next-row .edit-date { background:none; font-size:10px; color:var(--accent); padding:0; text-decoration:underline; }
 
 /* Memo Modal */
 .memo-overlay { position:fixed; inset:0; background:#00000080; z-index:60; display:none; align-items:center; justify-content:center; padding:20px; }
@@ -366,6 +368,21 @@ button { cursor:pointer; border:none; font:inherit; color:var(--text); }
   </div>
 </div>
 
+<!-- Date Edit Modal -->
+<div id="dateModal" class="memo-overlay" onclick="if(event.target===this)closeDateModal()">
+  <div class="memo-box">
+    <h3 id="dateModalTitle">次回復習日を設定</h3>
+    <div class="form-group">
+      <label>日付</label>
+      <input type="date" id="dateModalInput">
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn-submit" style="flex:1" onclick="saveDateModal()">保存</button>
+      <button style="flex:1;padding:14px;background:var(--card);border-radius:var(--radius);font-size:14px" onclick="clearDateModal()">クリア</button>
+    </div>
+  </div>
+</div>
+
 <!-- Toast -->
 <div id="toast" class="toast"></div>
 
@@ -529,10 +546,17 @@ function renderReviewList() {
   Object.values(grouped).forEach(r => {
     const m = materials.find(mt => mt.id === r.material_id);
     if ((m?.review_auto||'ON') !== 'ON') return;
-    const n = +r.review_num||1;
-    const nextDays = n<=1?7:n===2?14:30;
-    const rd = new Date(r.ts); rd.setDate(rd.getDate() + nextDays); rd.setHours(0,0,0,0);
+    const mi = materialItems.find(it => it.material_id === r.material_id && it.name === r.item_name);
+    let rd;
+    if (mi?.next_review) {
+      rd = new Date(mi.next_review); rd.setHours(0,0,0,0);
+    } else {
+      const n = +r.review_num||1;
+      const nextDays = n<=1?7:n===2?14:30;
+      rd = new Date(r.ts); rd.setDate(rd.getDate() + nextDays); rd.setHours(0,0,0,0);
+    }
     const diff = Math.ceil((rd - today) / 86400000);
+    const n = +r.review_num||1;
     if (diff <= 3) {
       const cert = certs.find(c => c.id === r.cert_id);
       items.push({ ...r, diff, certName:cert?.name||'', certColor:cert?.color||'#666', round:n });
@@ -772,16 +796,28 @@ function renderDetailItems(matId) {
 
     let nextInfo = '';
     const autoOn = matAutoOn && (item.review_auto || 'ON') === 'ON';
-    if (completedRounds > 0 && autoOn) {
-      const lastDone = logs.filter(l => l.result === '○').pop();
-      if (lastDone) {
-        const n = completedRounds;
-        const nextDays = n<=1?7:n===2?14:30;
-        const nd = new Date(lastDone.ts); nd.setDate(nd.getDate() + nextDays); nd.setHours(0,0,0,0);
+    if (autoOn) {
+      let nd = null;
+      let isManual = false;
+      if (item.next_review) {
+        nd = new Date(item.next_review); nd.setHours(0,0,0,0);
+        isManual = true;
+      } else if (completedRounds > 0) {
+        const lastDone = logs.filter(l => l.result === '○').pop();
+        if (lastDone) {
+          const n = completedRounds;
+          const nextDays = n<=1?7:n===2?14:30;
+          nd = new Date(lastDone.ts); nd.setDate(nd.getDate() + nextDays); nd.setHours(0,0,0,0);
+        }
+      }
+      if (nd) {
         const diff = Math.ceil((nd - today) / 86400000);
         const cls = diff < 0 ? 'overdue' : diff === 0 ? 'today' : '';
         const label = diff < 0 ? `${-diff}日超過！` : diff === 0 ? '今日が復習日' : `${diff}日後（${nd.getMonth()+1}/${nd.getDate()}）`;
-        nextInfo = `<div class="ch-next ${cls}">次回: ${label}</div>`;
+        const manualTag = isManual ? ' [手動]' : '';
+        nextInfo = `<div class="ch-next-row"><span class="ch-next ${cls}">次回: ${label}${manualTag}</span><button class="edit-date" onclick="openDateModal('${item.id}','${escapedName}','${item.next_review||''}')">変更</button></div>`;
+      } else {
+        nextInfo = `<div class="ch-next-row"><span class="ch-next">次回: 未設定</span><button class="edit-date" onclick="openDateModal('${item.id}','${escapedName}','')">設定</button></div>`;
       }
     }
 
@@ -866,6 +902,13 @@ async function doChapterRecord(matId, certId, itemName, result, memo) {
   const row = [new Date().toISOString(), certId, matId, itemName, roundNum, result, memo];
   try {
     await gasPost({ action:'appendReviewLog', row });
+    if (result === '○') {
+      const n = completedRounds + 1;
+      const nextDays = n<=1?7:n===2?14:30;
+      const nd = new Date(); nd.setDate(nd.getDate() + nextDays);
+      const nextStr = fmtDate(nd);
+      await updateItemNextReview(matId, itemName, nextStr);
+    }
     const label = result === '○' ? `${itemName}: ${roundNum}周目完了！` : `${itemName}: 途中保存`;
     showToast(label);
     await loadAllData();
@@ -878,6 +921,55 @@ async function doChapterRecord(matId, certId, itemName, result, memo) {
   } catch(e) {
     showToast('記録エラー');
   }
+}
+
+// ━━━ Next review date ━━━
+let pendingDateItemId = null;
+
+function openDateModal(itemId, itemName, currentDate) {
+  pendingDateItemId = itemId;
+  document.getElementById('dateModalTitle').textContent = `${itemName} — 次回復習日`;
+  document.getElementById('dateModalInput').value = currentDate || '';
+  document.getElementById('dateModal').classList.add('active');
+}
+
+function closeDateModal() {
+  document.getElementById('dateModal').classList.remove('active');
+  pendingDateItemId = null;
+}
+
+async function saveDateModal() {
+  if (!pendingDateItemId) return;
+  const dateVal = document.getElementById('dateModalInput').value;
+  if (!dateVal) { showToast('日付を入力してください'); return; }
+  const item = materialItems.find(it => it.id === pendingDateItemId);
+  if (!item) return;
+  closeDateModal();
+  await updateItemNextReview(item.material_id, item.name, dateVal);
+  item.next_review = dateVal;
+  showToast('次回復習日を設定しました');
+  if (currentDetailMatId) renderDetailItems(currentDetailMatId);
+}
+
+async function clearDateModal() {
+  if (!pendingDateItemId) return;
+  const item = materialItems.find(it => it.id === pendingDateItemId);
+  if (!item) return;
+  closeDateModal();
+  await updateItemNextReview(item.material_id, item.name, '');
+  item.next_review = '';
+  showToast('次回復習日をクリアしました（自動計算に戻ります）');
+  if (currentDetailMatId) renderDetailItems(currentDetailMatId);
+}
+
+async function updateItemNextReview(matId, itemName, dateVal) {
+  const item = materialItems.find(it => it.material_id === matId && it.name === itemName);
+  if (!item) return;
+  const idx = materialItems.indexOf(item);
+  const headers = ['id','material_id','order','category','name','review_auto','memo','next_review'];
+  const row = headers.map(h => h === 'next_review' ? dateVal : (item[h]||''));
+  await gasPost({ action:'updateMaterialItemRow', rowIndex:idx+2, row });
+  item.next_review = dateVal;
 }
 
 async function toggleMaterialAuto() {

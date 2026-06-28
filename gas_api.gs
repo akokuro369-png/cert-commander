@@ -53,6 +53,9 @@ function doPost(e) {
     case 'updateMaterialRow':
       updateRow(ss, 'materials', body.rowIndex, body.row);
       break;
+    case 'updateMaterialItemRow':
+      updateRow(ss, 'material_items', body.rowIndex, body.row);
+      break;
     case 'aggregateDaily':
       aggregateDaily(ss);
       break;
