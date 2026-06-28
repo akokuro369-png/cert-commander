@@ -658,7 +658,7 @@ async function recordChapterStatus(matId, certId, itemName, result, memo) {
   const logs = reviewLogs.filter(r => r.material_id === matId && r.item_name === itemName);
   const completedRounds = logs.filter(l => l.result === '○').length;
   const roundNum = result === '○' ? completedRounds + 1 : completedRounds + 1;
-  const row = [new Date().toISOString(), certId, matId, itemName, result, roundNum, memo];
+  const row = [new Date().toISOString(), certId, matId, itemName, roundNum, result, memo];
   await gasPost({ action:'appendReviewLog', row });
 }
 
@@ -832,7 +832,7 @@ async function doChapterRecord(matId, certId, itemName, result, memo) {
   const logs = reviewLogs.filter(r => r.material_id === matId && r.item_name === itemName);
   const completedRounds = logs.filter(l => l.result === '○').length;
   const roundNum = result === '○' ? completedRounds + 1 : completedRounds + 1;
-  const row = [new Date().toISOString(), certId, matId, itemName, result, roundNum, memo];
+  const row = [new Date().toISOString(), certId, matId, itemName, roundNum, result, memo];
   try {
     await gasPost({ action:'appendReviewLog', row });
     const label = result === '○' ? `${itemName}: ${roundNum}周目完了！` : `${itemName}: 途中保存`;
